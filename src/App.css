@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@100..900&family=Noto+Serif+Thai:wght@100..900&display=swap');
 *{
   box-sizing: border-box;
+  font-family: "Noto Sans Lao", sans-serif;
 }
 body {
+  font-family: "Noto Sans Lao", sans-serif;
   background: #f7f7f7;
   display: flex;
   flex-direction: column;
