@@ -14,3 +14,21 @@ body {
   margin: 30px;
   width: 350px;
 }
+.horizantai-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #333;
+  text-align: center;
+  border-radius: 3px;
+}
+.horizantai-menu li {
+  display: inline-block;
+}
+.horizantai-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px;
+  display: block;
+}

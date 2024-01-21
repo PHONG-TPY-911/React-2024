@@ -1,10 +1,10 @@
 import Transaction from "./components/Transaction";
 import FormComponent from "./components/FormComponent";
-// import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import DataContext from "./data/DataContext";
 import ReportComponent from "./components/ReportComponrnt";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   // const initState = [
@@ -39,74 +39,47 @@ function App() {
     // .reduce((result)) calculator
     const income = amounts
       .filter((el) => el > 0)
-      .reduce((total, el) => total + el, 0);
-    // ບໍ່ຕ້ອງການໃຫ້ລາຍຈ່າຍຕິດຄ່າລົບ (value)*-1 = (amounts.filter(el=>el < 0).reduce((total, el) => total + el,0))*-1
+      .reduce((total, el) => total + el, 0).toFixed(2);
     const expemse =
-      amounts.filter((el) => el < 0).reduce((total, el) => total + el, 0) * -1;
-    // console.log("ລາຍຮັບ = ", income);
-    // console.log("ລາຍຈ່າຍ = ", expemse);
-
+      ((amounts.filter((el) => el < 0).reduce((total, el) => total + el, 0)) * -1).toFixed(2);
     // keep value to State
     setReportIncome(income);
     setReportExpense(expemse);
   }, [items]);
-
-  // Reducer state
-  const [showReport, setShowReport] = useState(false);
-  // const [count, setCount] = useState(0);
-  const reducer = (state, action) => {
-    // ຈຳແນກປະເພດ
-    switch (action.type) {
-      case "SHOW":
-      // case "ADD":
-        return setShowReport(true);
-        // return state + action.payload;
-      // return state + 1
-      case "HIDE":
-      // case "SUB":
-      return setShowReport(false);
-        // return state - action.payload;
-      // return state - 1
-      // case "CLEAR":
-      //   return 0;
-    }
-  };
-  // how to use reducer and [result,dispatch] is value to show
-  const [result, dispatch] = useReducer(reducer, showReport);
-  // const [result, dispatch] = useReducer(reducer, count);
   return (
-    // ເປັນການຈາຍຂໍ້ມູນໃຫ້ແຕ່ລະ component ໄດ້
-    // <DataContext.Provider value={"Hello React JS"}>
-    // send data multiple value
     <DataContext.Provider
-      value={{
-        income: reportIncome,
-        expense: reportExpense,
-      }}
+      value={{ income: reportIncome, expense: reportExpense }}
     >
       <div className="container">
         <h1 style={{ color: "red", textAlign: "center" }}>
-          Program Accounting - Expense
+          ໂປຣແກຣມ ລາຍຮັບ - ລາຍຈ່າຍ
         </h1>
-        {/* use Reducer */}
-        {showReport && <ReportComponent />}
 
-        <FormComponent onAddItem={onAddNewItem} />
-
-        {/* Send data props */}
-        <Transaction items={items} />
-
-        <p>{result}</p>
-        {/* dispatch ເປັນຕົວກຳນົດ Action */}
-        <button onClick={() => dispatch({ type: "SHOW"})}>
-        {/* <button onClick={() => dispatch({ type: "ADD", payload: 10 })}> */}
-          Show
-        </button>
-        <button onClick={() => dispatch({ type: "HIDE"})}>
-        {/* <button onClick={() => dispatch({ type: "SUB", payload: 5 })}> */}
-          hide
-        </button>
-        {/* <button onClick={() => dispatch({ type: "CLEAR" })}>ລ້າງ</button> */}
+        <Router>
+          <div>
+            <ul className="horizantai-menu">
+              <li>
+                <Link to="/">ຂໍ້ມູູນບັນຊີ</Link>
+              </li>
+              <li>
+                <Link to="/insert">ບັນທຶກຂໍ້ມູນ</Link>
+              </li>
+            </ul>
+            <Routes>
+              <Route exact path="/" element={<ReportComponent />} />
+              <Route
+                exact
+                path="/insert"
+                element={
+                  <>
+                    <FormComponent onAddItem={onAddNewItem} />
+                    <Transaction items={items} />
+                  </>
+                }
+              />
+            </Routes>
+          </div>
+        </Router>
       </div>
     </DataContext.Provider>
   );
