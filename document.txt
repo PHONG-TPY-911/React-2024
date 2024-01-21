@@ -1,0 +1,26 @@
+    // uuid ເປັນການກຳນົດ key ທີ່ບໍ່ຊ້ຳກັນ
+    // npm install uuid
+    //import { v4 as uuidv4 } from 'uuid';
+
+    =========================================
+
+    // props type validation
+    // npm install prop-types
+    //npm install --save prop-types
+    //import PropTypes from 'prop-types'; // ES6
+    ============================
+    How to use Context API (Global State)
+    - Context API have 2 
+    Provider (Parent) ດູແລ ແລະ ຈັດການຂໍ້ມູນ ແລ້ວນຳໄປສົ່ງໃຫ້ Component
+    Consumer (Children) ນຳຂໍ້ມູນທີ່ໄດ້ຈາກ Provider ໄປສ້າງ ຫຼຶ ສະແດງຜົນໃນ Component
+
+    =================================
+    Context API (multiple Value)
+
+    ======================================
+    How to useReducer 
+    ຕ້ອງການປ່ຽນແປງຄ່າ State use with reducer ໂດຍຈະກຳນົດຮູບແບບການກະທຳທີ່ເກີດຂື້ນກັບ State ເອີ້ນວ່າ Action 
+    =======================================
+    React Router
+    How to install
+    npm install react-router-dom
